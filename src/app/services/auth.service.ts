@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth} from "@angular/fire/auth"
 import { User } from '../model/user';
+import { Router} from "@angular/router"
 
 
 
@@ -10,14 +11,15 @@ import { User } from '../model/user';
 })
 export class AuthService {
 
-  constructor(private AFauth : AngularFireAuth) { }
+  constructor(private AFauth : AngularFireAuth, private router:Router) { }
 
   logout(){
-    try {
-      this.AFauth.signOut();
-    } catch (error) {
-      console.log('Error--->',error)
-    }
+    
+      this.AFauth.signOut().then(()=>{
+        this.router.navigate(["/login"])
+      });
+      
+    
   }
   login(correo:string, contrasena:string){
 

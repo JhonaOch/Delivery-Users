@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../services/auth.service';
+;
 
 @Component({
   selector: 'app-home',
@@ -13,9 +15,15 @@ export class HomePage implements OnInit {
     pagination:false
   }
 
-  constructor() { }
-
   ngOnInit() {
+  }
+
+  constructor(public AFauth:AuthService){}
+
+  salir(){
+    console.log("salir de la sesion")
+    this.AFauth.logout();
+    
   }
 
 

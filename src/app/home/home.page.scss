@@ -1,12 +1,9 @@
-.slidecontent{
-    background-color: cadetblue;
+.slidecontent {
     width: 100%;
     height: 170px;
-    background-image: url("/assets/imagenes/home.png");
-    background-size: cover;
+    background-image: url("../../assets/icon/logo.png");
+    background-size: auto;
     background-position: center;
-    display: flex;
     justify-content: center;
     align-items: center;
-    filter: blur(0.5px);
 }
