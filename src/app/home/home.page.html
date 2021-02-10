@@ -37,7 +37,7 @@
 
         <ion-slide>
             <div class="slidecontent">
-                >
+
             </div>
         </ion-slide>
 
@@ -47,44 +47,19 @@
         Categorias
     </h2>
     <ion-slides [options]="opciones" pager="true">
-        <ion-slide>
-            <ion-card>
-                <img src="/assets/imagenes/home.png" />
+        <ion-slide *ngFor="let catEmp of catEmpresa">
+
+
+            <ion-card class="card" (click)="redirigir()">
+                <div>
+                    <img class="tamano" [src]="catEmp.imagenCat" />
+                </div>
                 <ion-card-header>
-                    <ion-card-title>Bebidas</ion-card-title>
+                    <ion-card-title>{{catEmp.nombre}}</ion-card-title>
                 </ion-card-header>
-
             </ion-card>
-        </ion-slide>
 
-        <ion-slide>
-            <ion-card>
-                <img src="/assets/imagenes/home.png" />
-                <ion-card-header>
-                    <ion-card-title>Comidas</ion-card-title>
-                </ion-card-header>
 
-            </ion-card>
-        </ion-slide>
-
-        <ion-slide>
-            <ion-card>
-                <img src="/assets/imagenes/home.png" />
-                <ion-card-header>
-                    <ion-card-title>Verduras</ion-card-title>
-                </ion-card-header>
-
-            </ion-card>
-        </ion-slide>
-
-        <ion-slide>
-            <ion-card>
-                <img src="/assets/imagenes/home.png" />
-                <ion-card-header>
-                    <ion-card-title>Farmacia</ion-card-title>
-                </ion-card-header>
-
-            </ion-card>
         </ion-slide>
 
     </ion-slides>

@@ -24,7 +24,15 @@ const routes: Routes = [
   {
     path: 'registro',
     loadChildren: () => import('./components/registro/registro.module').then( m => m.RegistroPageModule)
+  },  {
+    path: 'inicio-empresa',
+    loadChildren: () => import('./pages/inicio-empresa/inicio-empresa.module').then( m => m.InicioEmpresaPageModule)
+  },
+  {
+    path: 'categoria-emp',
+    loadChildren: () => import('./pages/categoria-emp/categoria-emp.module').then( m => m.CategoriaEmpPageModule)
   }
+
 
 ];
 

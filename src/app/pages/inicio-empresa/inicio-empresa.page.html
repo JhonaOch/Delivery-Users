@@ -1,0 +1,34 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-toolbar color="tema">
+            <ion-buttons slot="start">
+                <ion-back-button defaultHref="./home"></ion-back-button>
+            </ion-buttons>
+            <ion-title style="padding-left: 0" class=" ion-text-center ">Empresas</ion-title>
+        </ion-toolbar>
+    </ion-toolbar>
+
+
+</ion-header>
+
+
+
+<ion-content>
+
+    <ion-list *ngFor="let emp of empresas">
+        <ion-item button (click)="redirigir(emp.uid)">
+            <ion-thumbnail style=" height: 140px; width: 130px; " slot="start" *ngIf="emp.img">
+                <img [src]="emp.img">
+            </ion-thumbnail>
+            <ion-label>
+                <h1>{{emp.nombre}}</h1>
+                <h3>{{emp.direccion}}</h3>
+
+            </ion-label>
+        </ion-item>
+    </ion-list>
+
+
+
+
+</ion-content>
