@@ -50,7 +50,7 @@
         <ion-slide *ngFor="let catEmp of catEmpresa">
 
 
-            <ion-card class="card" (click)="redirigir()">
+            <ion-card class="card" (click)="redirigir(catEmp.categoriaEuid)">
                 <div>
                     <img class="tamano" [src]="catEmp.imagenCat" />
                 </div>

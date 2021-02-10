@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { EmpresaService } from '../services/empresa.service';
-import { Router } from '@angular/router';
+import { Router, NavigationExtras } from '@angular/router';
 ;
 
 @Component({
@@ -41,8 +41,12 @@ export class HomePage implements OnInit {
    
   }
 
-  redirigir(){
-    this.router.navigate(['/inicio-empresa'])
+  redirigir(uid:string){
+    console.log("pasa del home",uid)
+    let navigateExtras: NavigationExtras={
+      queryParams:{idCatEmp:uid}
+    };
+    this.router.navigate(['/inicio-empresa'],navigateExtras);
   }
    
 

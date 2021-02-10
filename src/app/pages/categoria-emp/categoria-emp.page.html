@@ -17,5 +17,22 @@
         <div class="contentImg">
             <ion-searchbar color="danger "></ion-searchbar>
         </div>
+
     </div>
+    <h2>Categorias</h2>
+    <ion-list *ngFor="let catProd of categorias">
+        <ion-item button (click)="redirigir()">
+            <ion-thumbnail style=" height: 140px; width: 130px; " slot="start" *ngIf="catProd.img">
+                <img [src]="catProd.img">
+            </ion-thumbnail>
+            <ion-label>
+                <h1>{{catProd.nombre}}</h1>
+                <h3>{{catProd.descripcion}}</h3>
+
+            </ion-label>
+        </ion-item>
+    </ion-list>
+
+
+
 </ion-content>

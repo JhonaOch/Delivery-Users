@@ -13,6 +13,7 @@ export class CategoriaEmpPage implements OnInit {
 
   uidR:string;
   empresa:any[];
+  categorias:any[];
   photo:string;
 
   constructor(public empresaService:EmpresaService, public router: Router, private rout:ActivatedRoute) {
@@ -28,12 +29,23 @@ export class CategoriaEmpPage implements OnInit {
     this.recuperarEmpresa();
   }
 
-  
   async recuperarEmpresa(){;
     await this.empresaService.findEmpresaPorID(this.uidR).subscribe((resp: any)=>{
       this.empresa=resp;
       this.photo=this.empresa[0].img
-      console.log();
+      
     })
+    this.recuperarCategorias();
+  }
+
+  async recuperarCategorias(){
+    await this.empresaService.getCategoriasProductos(this.uidR).subscribe((resp:any)=>{
+      this.categorias=resp;
+      console.log(this.categorias);
+    })
+  }
+
+  redirigir(){
+    this.router.navigate(['/productos'])
   }
 }

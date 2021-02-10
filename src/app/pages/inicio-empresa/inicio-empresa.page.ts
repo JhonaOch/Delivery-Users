@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EmpresaService } from '../../services/empresa.service';
-import { NavigationExtras, Router } from '@angular/router';
+import { NavigationExtras, Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-inicio-empresa',
@@ -10,12 +10,20 @@ import { NavigationExtras, Router } from '@angular/router';
 export class InicioEmpresaPage implements OnInit {
 
   empresas:any[];
+  uidCatEmpresa:string;
   opciones={
     slidesPerView:2,
     freeMode:true,
     pagination:false
   }
-  constructor(public empresaService:EmpresaService, public router: Router) { }
+  constructor(public empresaService:EmpresaService, public router: Router, private rout:ActivatedRoute) { 
+    this.rout.queryParams.subscribe(result=>{
+      if(this.router.getCurrentNavigation().extras.queryParams){
+        this.uidCatEmpresa=this.router.getCurrentNavigation().extras.queryParams.idCatEmp;
+        console.log("uidCatEmp",this.uidCatEmpresa);
+      }
+    })
+  }
 
   ngOnInit() {
     this.recuperarEmPresa();
@@ -23,7 +31,7 @@ export class InicioEmpresaPage implements OnInit {
 
 
   async recuperarEmPresa(){
-    await this.empresaService.getEmpresa().subscribe((respuesta:any)=>{
+    await this.empresaService.getEmpresaid(this.uidCatEmpresa).subscribe((respuesta:any)=>{
       this.empresas = respuesta;
       console.log( this.empresas);
 

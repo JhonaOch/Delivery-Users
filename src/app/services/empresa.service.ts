@@ -13,11 +13,17 @@ export class EmpresaService {
     return this.afs.collection("categoriaEmpresa").valueChanges();
   }
 
-  getEmpresa():Observable<any>{
-    return this.afs.collection("empresas").valueChanges();
+  getEmpresaid(uidCatEmpresa:string):Observable<any>{
+    return this.afs.collection("empresas",ref => ref.where("categoriaEmpresaid","==",uidCatEmpresa)).valueChanges();
   }
 
-  findEmpresaPorID(uidEmpresa : string): Observable<any>{
+  findEmpresaPorID(uidEmpresa : string){
     return this.afs.collection("empresas",ref => ref.where("uid","==",uidEmpresa)).valueChanges();
   }
+
+  getCategoriasProductos(uidEmpresa:string):Observable<any>{
+    console.log("llega al service",uidEmpresa)
+    return this.afs.collection("categoriaProductos",ref => ref.where("uidEmpresa","==",uidEmpresa)).valueChanges();
+  }
+  
 }
