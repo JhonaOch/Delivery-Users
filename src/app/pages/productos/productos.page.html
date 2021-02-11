@@ -6,4 +6,18 @@
 
 <ion-content>
 
+  <h2>Productos</h2>
+  <ion-list *ngFor="let prod of productos">
+      <ion-item button (click)="redirigir(prod.uid, prod.uidCategoria)">
+          <ion-thumbnail style=" height: 140px; width: 130px; " slot="start" *ngIf="prod.img">
+              <img [src]="prod.img">
+          </ion-thumbnail>
+          <ion-label>
+              <h1>{{prod.nombre}}</h1>
+              <h3>{{prod.descripcion}}</h3>
+
+          </ion-label>
+      </ion-item>
+  </ion-list>
+
 </ion-content>

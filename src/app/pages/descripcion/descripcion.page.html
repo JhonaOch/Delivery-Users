@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>descripcion</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/productos"></ion-back-button>
+  </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-item>
+    <ion-label position="floating">Nombre</ion-label>
+    <ion-input [(ngModel)]="producto.nombre"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Precio</ion-label>
+    <ion-input [(ngModel)]="producto.costo"></ion-input>
+  </ion-item>
+  <ion-img [src]="producto.img"></ion-img>
+  <ion-item>
+    <ion-label position="floating">Descripcion</ion-label>
+    <ion-input [(ngModel)]="producto.descripcion"></ion-input>
+  </ion-item>
+
+  <ion-button color="dark" (click)="agregarCarrito()"  xpand="block " >Agregar a Carrito</ion-button>
+
+</ion-content>
