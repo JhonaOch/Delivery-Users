@@ -56,6 +56,15 @@ export class AuthService {
   
   }
 
+  registrarUsuarioGoogle(user:User){
+    let refUser= this.afs.collection("Users");
+    user.rol="cliente";
+
+    console.log(user.uid, user.direccion, user.nombre, user.apellido,user.correo,user.telefono, user.rol );
+    refUser.doc(user.uid).set(Object.assign({},user),{merge:true});
+  
+  }
+
 
   async resetContra(email:string): Promise<void> {
     try{

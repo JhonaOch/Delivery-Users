@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import {Router} from '@angular/router'
+import { User } from '../../model/user';
 
 @Component({
   selector: 'app-login',
@@ -11,6 +12,7 @@ export class LoginPage implements OnInit {
 
   correo:string;
   contra:string;
+  usuario: User=new User();
 
   constructor(private auth: AuthService, public router: Router) { }
 
@@ -29,6 +31,15 @@ export class LoginPage implements OnInit {
       const user = await this.auth.loginGoogle();
       if(user){
         console.log("user----------->",user)
+        this.usuario.uid=user.uid;
+        this.usuario.correo=user.email;
+        var splitted = user.displayName.split(" ", 2); 
+        this.usuario.nombre= splitted[0];
+        this.usuario.apellido= splitted[1];
+        this.usuario.telefono=user.phoneNumber;
+        
+        
+        this.auth.registrarUsuario(this.usuario);
         this.router.navigate(['/home'])
       }
 
