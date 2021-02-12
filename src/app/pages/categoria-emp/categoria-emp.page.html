@@ -21,7 +21,7 @@
     </div>
     <h2>Categorias</h2>
     <ion-list *ngFor="let catProd of categorias">
-        <ion-item button (click)="redirigir()">
+        <ion-item button (click)="redirigir(catProd.uid)">
             <ion-thumbnail style=" height: 140px; width: 130px; " slot="start" *ngIf="catProd.img">
                 <img [src]="catProd.img">
             </ion-thumbnail>

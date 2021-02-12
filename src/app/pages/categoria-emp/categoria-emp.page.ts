@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EmpresaService } from '../../services/empresa.service';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, NavigationExtras } from '@angular/router';
 
 
 
@@ -46,7 +46,12 @@ export class CategoriaEmpPage implements OnInit {
     })
   }
 
-  redirigir(){
-    this.router.navigate(['/productos'])
+  redirigir(uidCat : string){
+
+    let navigateExtras: NavigationExtras={
+       queryParams:{idC:uidCat}
+    };
+
+    this.router.navigate(['/productos'],navigateExtras)
   }
 }
