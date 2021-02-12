@@ -30,7 +30,7 @@ export class CategoriaEmpPage implements OnInit {
   }
 
   async recuperarEmpresa(){;
-    await this.empresaService.findEmpresaPorID(this.uidR).subscribe((resp: any)=>{
+    this.empresaService.findEmpresaPorID(this.uidR).subscribe((resp)=>{
       this.empresa=resp;
       this.photo=this.empresa[0].img
       
@@ -39,9 +39,10 @@ export class CategoriaEmpPage implements OnInit {
   }
 
   async recuperarCategorias(){
-    await this.empresaService.getCategoriasProductos(this.uidR).subscribe((resp:any)=>{
+    this.empresaService.getCategoriasProductos(this.uidR).subscribe((resp)=>{
       this.categorias=resp;
       console.log(this.categorias);
+      
     })
   }
 

@@ -33,7 +33,7 @@ export class InicioEmpresaPage implements OnInit {
   async recuperarEmPresa(){
     await this.empresaService.getEmpresaid(this.uidCatEmpresa).subscribe((respuesta:any)=>{
       this.empresas = respuesta;
-      console.log( this.empresas);
+      console.log(this.empresas);
 
     })
    

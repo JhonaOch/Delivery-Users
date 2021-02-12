@@ -13,7 +13,7 @@
 
 <ion-content>
 
-    <div class="content" [ngStyle]=" { 'background-image': 'url(' + photo + ')'} ">
+    <div *ngIf="photo" class="content" [ngStyle]="{'background-image': 'url('+photo+')'}">
         <div class="contentImg">
             <ion-searchbar color="danger "></ion-searchbar>
         </div>
@@ -28,7 +28,6 @@
             <ion-label>
                 <h1>{{catProd.nombre}}</h1>
                 <h3>{{catProd.descripcion}}</h3>
-
             </ion-label>
         </ion-item>
     </ion-list>

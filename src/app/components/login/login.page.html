@@ -18,9 +18,20 @@
     <br>
     <br>
     <ion-button color="tema" (click)=" onSubmitLogin()" expand="block ">Iniciar Sesion</ion-button>
+    <br>
+
+    <div class="referen">
+        <span class=" divider line one-line "> or </span>
+    </div>
+    <br>
+    <ion-row>
+        <ion-col>
+            <ion-button (click)="loginGoogle(correo,contra) " expand="block " color="danger">
+                <ion-icon style="padding-right: 15px; " name="logo-google "></ion-icon> Login with Google </ion-button>
+        </ion-col>
+    </ion-row>
 
     <br>
-    <p class="referen" routerLink="/registro">Registrarse</p>
-
+    <p class="referen" style="text-decoration: underline;" routerLink="/registro">Registrarse</p>
 
 </ion-content>

@@ -29,6 +29,7 @@ import { IonicStorageModule } from '@ionic/storage';
     AngularFirestoreModule,
     AngularFireStorageModule,
     IonicStorageModule.forRoot()
+
        
   ],
   providers: [
