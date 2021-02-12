@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { EmpresaService } from '../../services/empresa.service';
 import { Product } from '../../model/producto';
+import { CarritoService } from '../../services/carrito.service';
 
 @Component({
   selector: 'app-descripcion',
@@ -14,7 +15,7 @@ producto : Product = new Product();
  
   uidProducto : string;
   uidCategoria : string;
-  constructor(public router: Router, private rout:ActivatedRoute, private emprService: EmpresaService) { 
+  constructor(public router: Router, private rout:ActivatedRoute, private emprService: EmpresaService, private carrito: CarritoService) { 
     this.recuperarParametro();
   }
 
@@ -48,7 +49,8 @@ producto : Product = new Product();
 
 
   agregarCarrito(){
-    this.router.navigate(["/productos"])
+    this.carrito.guardarProductoCarrito(this.producto);
+    this.router.navigate(["/carrito"])
 
   }
 

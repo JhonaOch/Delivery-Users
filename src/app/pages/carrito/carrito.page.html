@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>carrito</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <h2>Carrito</h2>
+    <ion-list *ngFor="let carrito of productos">
+        <ion-item >
+            <ion-thumbnail style=" height: 140px; width: 130px; " slot="start" *ngIf="carrito.img">
+                <img [src]="carrito.img">
+            </ion-thumbnail>
+            <ion-label>
+                <h1>{{carrito.nombre}}</h1>
+                <h3>{{carrito.descripcion}}</h3>
+
+            </ion-label>
+        </ion-item>
+    </ion-list>
+ 
+
+</ion-content>
