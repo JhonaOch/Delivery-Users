@@ -24,4 +24,15 @@ export class LoginPage implements OnInit {
     
   }
 
+  async loginGoogle(){
+    try{
+      const user = await this.auth.loginGoogle();
+      if(user){
+        console.log("user----------->",user)
+        this.router.navigate(['/home'])
+      }
+
+    }catch(error){console.log("error login google",error)}
+  }
+
 }
