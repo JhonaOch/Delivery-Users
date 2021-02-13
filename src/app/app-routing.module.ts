@@ -24,7 +24,8 @@ const routes: Routes = [
   {
     path: 'registro',
     loadChildren: () => import('./components/registro/registro.module').then( m => m.RegistroPageModule)
-  },  {
+  },
+  {
     path: 'inicio-empresa',
     loadChildren: () => import('./pages/inicio-empresa/inicio-empresa.module').then( m => m.InicioEmpresaPageModule)
   },
@@ -43,6 +44,11 @@ const routes: Routes = [
   {
     path: 'mapa',
     loadChildren: () => import('./pages/mapa/mapa.module').then( m => m.MapaPageModule)
+  },
+  {
+    path: 'carrito',
+    loadChildren: () => import('./pages/carrito/carrito.module').then( m => m.CarritoPageModule)
+
   }
 
 
