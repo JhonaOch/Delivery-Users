@@ -3,6 +3,7 @@ import { LocationService } from '../../services/location.service';
 import { MapaService } from '../../services/mapa.service';
 import { NotificacionesService } from '../../services/notificaciones.service';
 import { Mapa } from '../../model/mapa';
+import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
 
 @Component({
   selector: 'app-mapa',
@@ -44,7 +45,20 @@ export class MapaPage implements OnInit {
     pointer: "https://cdn1.iconfinder.com/data/icons/Map-Markers-Icons-Demo-PNG/48/Map-Marker-Ball-Azure.png"
   };
 
-  constructor(private locationService: LocationService,private ns: NotificacionesService, private mapaService: MapaService) { }
+
+  uidPedido:string;
+
+  constructor(private locationService: LocationService,private ns: NotificacionesService, private mapaService: MapaService, public rout:ActivatedRoute, public router: Router) { 
+
+    this.rout.queryParams.subscribe(result=>{
+      if(this.router.getCurrentNavigation().extras.queryParams){
+        this.uidPedido=this.router.getCurrentNavigation().extras.queryParams.idPdido;
+        console.log(this.uidPedido);
+      }
+    })
+
+
+  }
 
   async ngOnInit() {
     this.currentLocation = await this.locationService.getCurrentLocation(true);
@@ -71,11 +85,15 @@ export class MapaPage implements OnInit {
 
   guardar(){
     // console.log("mapa", this.mapa);
+    this.mapa.uidPedido=this.uidPedido;
     this.mapa.latitude=this.centerLocation.latitude;
     this.mapa.longitude=this.centerLocation.longitude;
     this.mapa.address=this.centerLocation.address;
     console.log("-------------------------",this.mapa.address)
     this.mapaService.addMapa(this.mapa);
+    this.router.navigate(["/carrito"]);
+
+
   }
 
   getPuntos(){

@@ -1,8 +1,9 @@
 import { ProductoPedido } from './productoPedido';
 export class Pedido {
     uid: string;
+    uidUsario: string;
     precioTotal?: number;
-    estado: string;
+    estado:string= "En Solicitud";
     productos?: ProductoPedido[];
 
 }

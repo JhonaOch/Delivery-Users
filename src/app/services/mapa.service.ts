@@ -12,10 +12,7 @@ export class MapaService {
   addMapa(mapa: Mapa){
     // console.log(mapa);
     const refMapa = this.afs.collection("mapa");
-    if(mapa.id==null){
-      mapa.id = this.afs.createId();
-    }   
-    refMapa.doc(mapa.id).set(Object.assign({}, mapa))
+    refMapa.doc(mapa.uidPedido).set(Object.assign({}, mapa))
   }
 
   getAddress(){

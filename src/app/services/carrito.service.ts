@@ -75,13 +75,14 @@ export class CarritoService {
 
 
 
-  crearPedidoIni(){
+  crearPedidoIni(uidU: string){
     if(this.pedido.uid == null){
       // this.pedido.uid = this.afs.createId();
       this.pedido = {
         uid : this.afs.createId(),
-        estado : " Espera",
+        uidUsario: uidU,
         precioTotal : null,
+        estado : " Espera",
         productos : []
       }
     }
@@ -94,6 +95,13 @@ export class CarritoService {
 
   eliminarStoragePedido(){
     this.storage.remove("pedido");
+  }
+
+
+  crearPedidoBase(pedido: Pedido){
+      const refContacto = this.afs.collection("pedidos");  
+      refContacto.doc(pedido.uid).set(Object.assign({}, pedido), { merge: true})
+    
   }
 
 

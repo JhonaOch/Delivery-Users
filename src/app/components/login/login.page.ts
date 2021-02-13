@@ -14,6 +14,7 @@ export class LoginPage implements OnInit {
   correo:string;
   contra:string;
   usuario: User=new User();
+  usuario1: string;
 
   constructor(private auth: AuthService, public router: Router, public car: CarritoService) { }
 
@@ -22,16 +23,20 @@ export class LoginPage implements OnInit {
 
   onSubmitLogin(){
     
-    this.auth.login(this.correo,this.contra).then(res => {
+    this.auth.login(this.correo,this.contra).then((res:any) => {
+      this.usuario1 = res.user.uid;
+      console.log("soy el usuario",this.usuario1);
+      this.crearP();
       this.router.navigate(['/home'])
+      
     }).catch(err => alert("No existe el usuario"));
-    this.crearP();
 
-    
   }
+  
 
   async crearP(){
-   await this.car.crearPedidoIni();
+    console.log("va a crear")
+   await this.car.crearPedidoIni(this.usuario1);
   }
 
   async loginGoogle(){

@@ -3,5 +3,6 @@ export class Mapa{
     latitude:string;
     longitude: string;
     address: string;
+    uidPedido:string;
 
 }

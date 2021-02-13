@@ -40,8 +40,8 @@ producto : Product = new Product();
 
 
  async recuperarProducto(){
-    await this.emprService.buscarProducto(this.uidCategoria,this.uidProducto).then(resp =>{
-      const aux:any = resp
+    await this.emprService.buscarProducto(this.uidCategoria,this.uidProducto).then((resp:any) =>{
+      const aux = resp
       this.producto = aux;
       console.log(this.producto.nombre);
     })
@@ -50,11 +50,10 @@ producto : Product = new Product();
 
 
   agregarCarrito(){
+    console.log(this.producto, "Arrechooooooooooooooooo")
     this.carrito.guardarProductoCarrito(this.producto);
     this.router.navigate(["/carrito"]);
-    location.reload();
-
-
+    
   }
 
 
