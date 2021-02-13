@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { EmpresaService } from '../../services/empresa.service';
 import { Product } from '../../model/producto';
 import { CarritoService } from '../../services/carrito.service';
+import { CarritoPage } from '../carrito/carrito.page';
 
 @Component({
   selector: 'app-descripcion',
@@ -50,7 +51,9 @@ producto : Product = new Product();
 
   agregarCarrito(){
     this.carrito.guardarProductoCarrito(this.producto);
-    this.router.navigate(["/carrito"])
+    this.router.navigate(["/carrito"]);
+    location.reload();
+
 
   }
 

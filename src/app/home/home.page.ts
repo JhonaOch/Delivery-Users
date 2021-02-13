@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { EmpresaService } from '../services/empresa.service';
 import { Router, NavigationExtras } from '@angular/router';
+import { CarritoService } from '../services/carrito.service';
+import { Pedido } from '../model/pedido';
 ;
 
 @Component({
@@ -18,15 +20,20 @@ export class HomePage implements OnInit {
   }
 
   catEmpresa : any[];
+  pedido: Pedido;
 
+ 
+
+  constructor(public AFauth:AuthService, public empresaService:EmpresaService, public router: Router, public car: CarritoService){}
   ngOnInit() {
+    this.recuperarPedido();
     this.recuperarCategoriasEm();
   }
 
-  constructor(public AFauth:AuthService, public empresaService:EmpresaService, public router: Router){}
 
   salir(){
     console.log("salir de la sesion")
+    this.car.eliminarStoragePedido();
     this.AFauth.logout();
     
   }
@@ -48,6 +55,23 @@ export class HomePage implements OnInit {
     };
     this.router.navigate(['/inicio-empresa'],navigateExtras);
   }
+
+  carrito(){
+    this.router.navigate(['/carrito']);
+  }
+
+  async recuperarPedido(){
+    await this.car.recuperarPedido().then(resp =>{
+      console.log("recupero el pedido");
+      const aux = resp;
+      this.pedido = aux;
+      console.log(this.pedido);
+
+    })
+
+  }
+
+ 
    
 
 

@@ -1,23 +1,63 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>carrito</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+  </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <h2>Carrito</h2>
-    <ion-list *ngFor="let carrito of productos">
+        
+  
+    <ion-list *ngFor="let carrito of pedido.productos ">
+      
         <ion-item >
-            <ion-thumbnail style=" height: 140px; width: 130px; " slot="start" *ngIf="carrito.img">
-                <img [src]="carrito.img">
+            <ion-thumbnail style=" height: 140px; width: 130px; " slot="start" *ngIf="carrito.producto.img " >
+                <img [src]="carrito.producto.img">
             </ion-thumbnail>
             <ion-label>
-                <h1>{{carrito.nombre}}</h1>
-                <h3>{{carrito.descripcion}}</h3>
-
+                <h1>{{carrito.producto.nombre}}</h1>
+                <h3>{{carrito.producto.descripcion}}</h3>
+                <h1>Costo : </h1>
+                <h3>{{carrito.producto.costo}}</h3>
+                <h1>Cantidad : </h1>
+                <h1>{{carrito.cantidad}}</h1>
             </ion-label>
+            <ion-button (click)="sumCarrito(carrito.producto)"  slot="end">
+              <ion-icon  name="add-circle-outline"></ion-icon>
+          </ion-button>
+          <ion-button (click)="resCarrito(carrito.producto)"  slot="end">
+            <ion-icon name="remove-circle-outline"></ion-icon>
+        </ion-button>
+        
         </ion-item>
-    </ion-list>
- 
+      
 
+    </ion-list>
+
+ 
 </ion-content>
+
+<ion-footer>
+  <ion-grid>
+    <ion-row class="ion-justify-content-center">
+      <ion-col class="normal text-center" size="4">
+        Cantidad: {{cantidad}}
+
+      </ion-col>
+      <ion-col class="normal text-center" size="3">
+        Total: {{total}}$
+        
+      </ion-col >
+    </ion-row>
+    <ion-row>
+        <ion-col>
+          <ion-button expand="full" class="normal">
+            Pedir
+           </ion-button>
+        </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-footer>
