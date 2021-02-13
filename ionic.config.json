@@ -1,7 +1,5 @@
 {
-  "name": "proyecto_Delivery",
-  "integrations": {
-    "cordova": {}
-  },
+  "name": "New Ionic App",
+  "integrations": {},
   "type": "angular"
 }
