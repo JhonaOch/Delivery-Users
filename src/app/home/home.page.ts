@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { EmpresaService } from '../services/empresa.service';
 import { Router, NavigationExtras } from '@angular/router';
+import { ProductoService } from '../services/producto.service';
+import { Product } from '../model/producto';
 ;
 
 @Component({
@@ -18,12 +20,18 @@ export class HomePage implements OnInit {
   }
 
   catEmpresa : any[];
+  productos : any[];
+
+  uidPro:string;
+
 
   ngOnInit() {
     this.recuperarCategoriasEm();
+    this.listaProducto();
+
   }
 
-  constructor(public AFauth:AuthService, public empresaService:EmpresaService, public router: Router){}
+  constructor(public AFauth:AuthService, public empresaService:EmpresaService, public router: Router,public productoS:ProductoService){}
 
   salir(){
     console.log("salir de la sesion")
@@ -48,8 +56,30 @@ export class HomePage implements OnInit {
     };
     this.router.navigate(['/inicio-empresa'],navigateExtras);
   }
+
+  async listaProducto(){
+    await this.productoS.getProductosCat().subscribe((respuesta:any)=>{
+      this.productos = respuesta;
+      console.log( this.productos);
+      console.log("LLEGA AL PRODUCTOS")
+
+    })
    
+  }
+
+
+  
+     
+  redirigir2(codigoP: string, codigoC : string){
+
+    let navigateExtras: NavigationExtras={
+      queryParams:{idP:codigoP, idC : codigoC}
+   };
+    this.router.navigate(["/descripcion"],navigateExtras)
+  }
 
 
 
 }
+
+
