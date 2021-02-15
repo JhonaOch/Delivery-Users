@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import {Router} from '@angular/router'
 import { User } from '../../model/user';
+import { CarritoService } from '../../services/carrito.service';
 
 @Component({
   selector: 'app-login',
@@ -13,17 +14,29 @@ export class LoginPage implements OnInit {
   correo:string;
   contra:string;
   usuario: User=new User();
+  usuario1: string;
 
-  constructor(private auth: AuthService, public router: Router) { }
+  constructor(private auth: AuthService, public router: Router, public car: CarritoService) { }
 
   ngOnInit() {
   }
 
   onSubmitLogin(){
-    this.auth.login(this.correo,this.contra).then(res => {
-      this.router.navigate(['/home'])
-    }).catch(err => alert("No existe el usuario"));
     
+    this.auth.login(this.correo,this.contra).then((res:any) => {
+      this.usuario1 = res.user.uid;
+      console.log("soy el usuario",this.usuario1);
+      this.crearP();
+      this.router.navigate(['/home'])
+      
+    }).catch(err => alert("No existe el usuario"));
+
+  }
+  
+
+  async crearP(){
+    console.log("va a crear")
+   await this.car.crearPedidoIni(this.usuario1);
   }
 
   async loginGoogle(){
