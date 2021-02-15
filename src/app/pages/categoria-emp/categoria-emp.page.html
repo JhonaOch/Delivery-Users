@@ -4,22 +4,32 @@
             <ion-buttons slot="start">
                 <ion-back-button defaultHref="./inicio-empresa"></ion-back-button>
             </ion-buttons>
-            <ion-title style="padding-left: 0" class=" ion-text-center ">Empresas</ion-title>
+            <ion-title style="padding-left: 0" class=" ion-text-center ">Categorias Empresa</ion-title>
         </ion-toolbar>
     </ion-toolbar>
 
 
 </ion-header>
 
-<ion-content>
+<ion-content color="content">
+
+    <ion-item>
+        <ion-label position="stacked">Busqueda</ion-label>
+        <ion-input [(ngModel)]="buscarNombre"></ion-input>
+  
+      </ion-item>
+  
+      <ion-button (click)="buscar()">Buscar</ion-button>
+
 
     <div *ngIf="photo" class="content" [ngStyle]="{'background-image': 'url('+photo+')'}">
+        
         <div class="contentImg">
-            <ion-searchbar color="danger "></ion-searchbar>
+            <ion-searchbar ></ion-searchbar>
         </div>
 
     </div>
-    <h2>Categorias</h2>
+    <h5>Categorias</h5>
     <ion-list *ngFor="let catProd of categorias">
         <ion-item button (click)="redirigir(catProd.uid)">
             <ion-thumbnail style=" height: 140px; width: 130px; " slot="start" *ngIf="catProd.img">

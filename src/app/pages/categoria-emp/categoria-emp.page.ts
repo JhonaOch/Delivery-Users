@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { EmpresaService } from '../../services/empresa.service';
 import { Router, ActivatedRoute, NavigationExtras } from '@angular/router';
+import { Product } from 'src/app/model/producto';
+import { CategoriaService } from 'src/app/services/categoria.service';
 
 
 
@@ -15,8 +17,10 @@ export class CategoriaEmpPage implements OnInit {
   empresa:any[];
   categorias:any[];
   photo:string;
+  buscarNombre:string;
+  
 
-  constructor(public empresaService:EmpresaService, public router: Router, private rout:ActivatedRoute) {
+  constructor(public empresaService:EmpresaService, public router: Router, private rout:ActivatedRoute,public categoriaS:CategoriaService) {
     this.rout.queryParams.subscribe(result=>{
       if(this.router.getCurrentNavigation().extras.queryParams){
         this.uidR=this.router.getCurrentNavigation().extras.queryParams.idEmp;
@@ -54,4 +58,28 @@ export class CategoriaEmpPage implements OnInit {
 
     this.router.navigate(['/productos'],navigateExtras)
   }
+
+  // async buscaNombre(name:string){
+    
+  //   this.categoriaS.buscarCategoriaPorNombre(name).subscribe((resp)=>{
+  //     name=resp;
+  //     console.log(name);
+      
+  //   })
+
+  //   this.recuperarCategorias();
+
+  // }
+
+
+  buscar(){
+    console.log(this.buscarNombre)
+        
+      this.categoriaS.buscarCategoriaPorNombre(this.buscarNombre)
+      console.log("El nombre es",this.buscarNombre) 
+
+  }
+
+
 }
+
