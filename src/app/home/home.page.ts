@@ -2,9 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { EmpresaService } from '../services/empresa.service';
 import { Router, NavigationExtras } from '@angular/router';
+import { ProductoService } from '../services/producto.service';
+import { Product } from '../model/producto';
 import { CarritoService } from '../services/carrito.service';
 import { Pedido } from '../model/pedido';
-;
+
 
 @Component({
   selector: 'app-home',
@@ -20,15 +22,23 @@ export class HomePage implements OnInit {
   }
 
   catEmpresa : any[];
+  productos : any[];
+
+  uidPro:string;
+
   pedido: Pedido;
+
 
  
 
-  constructor(public AFauth:AuthService, public empresaService:EmpresaService, public router: Router, public car: CarritoService){}
+  constructor(public AFauth:AuthService, public empresaService:EmpresaService, public router: Router, public car: CarritoService,public productoS:ProductoService){}
   ngOnInit() {
     this.recuperarPedido();
     this.recuperarCategoriasEm();
+    this.listaProducto();
+
   }
+
 
 
   salir(){
@@ -56,6 +66,15 @@ export class HomePage implements OnInit {
     this.router.navigate(['/inicio-empresa'],navigateExtras);
   }
 
+
+  async listaProducto(){
+    await this.productoS.getProductosCat().subscribe((respuesta:any)=>{
+      this.productos = respuesta;
+      console.log( this.productos);
+      console.log("LLEGA AL PRODUCTOS")
+
+    })
+  }
   carrito(){
     this.router.navigate(['/carrito']);
   }
@@ -71,9 +90,20 @@ export class HomePage implements OnInit {
 
   }
 
- 
-   
+
+
+  
+     
+  redirigir2(codigoP: string, codigoC : string){
+
+    let navigateExtras: NavigationExtras={
+      queryParams:{idP:codigoP, idC : codigoC}
+   };
+    this.router.navigate(["/descripcion"],navigateExtras)
+  }
 
 
 
 }
+
+

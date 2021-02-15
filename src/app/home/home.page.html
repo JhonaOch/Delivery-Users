@@ -1,50 +1,46 @@
 <ion-header>
-    <ion-toolbar>
+    <ion-toolbar color="tema">
         <ion-buttons slot="start">
             <ion-menu-button></ion-menu-button>
         </ion-buttons>
+
+        <div class="ion-text-center">
+           
+
         <ion-title>DeliFast</ion-title>
         <ion-button (click)="carrito()" slot="end">
             <ion-icon name="cart-outline"></ion-icon>
         </ion-button>
 
-        <ion-button slot="end">
-            <ion-icon name="notifications-outline"></ion-icon>
-        </ion-button>
+        </div>
+        
 
-        <ion-button (click)="salir()" slot="end">
-            <!-- Advanced: explicity set the icon for each platform -->
-            <ion-icon style="margin-right:5px;" name="log-out"></ion-icon>Salir
-        </ion-button>
+        <div slot="end" class="icono ion-activatable repple-parent">
+            <ion-ripple-effect>
+                
+            </ion-ripple-effect>
+            <ion-icon (click)="salir()" name="log-out"></ion-icon>
+          </div>
 
     </ion-toolbar>
 </ion-header>
 
 
 
-<ion-content>
-    <ion-slides pager="true">
+<ion-content  color="content">
+    <ion-slides >
+      
         <ion-slide>
-            <div class="slidecontent">
-
-            </div>
+            
+              <div class="slidecontent">
+                <img src="../../assets/imagenes/logo23.png" class="fondo"/> 
+              </div>
+          
         </ion-slide>
-
-
-        <ion-slide>
-            <div class="slidecontent">
-
-            </div>
-        </ion-slide>
-
-
-        <ion-slide>
-            <div class="slidecontent">
-
-            </div>
-        </ion-slide>
-
+  
     </ion-slides>
+
+  
 
     <h2>
         Categorias
@@ -70,41 +66,41 @@
     <h2>
         Destacados
     </h2>
-    <ion-slides pager="true" [options]="opciones">
-        <ion-slide>
-            <ion-card>
-                <img src="/assets/imagenes/home.png" />
-                <ion-card-header>
-                    <ion-card-title>Caldo de Pollo</ion-card-title>
-                </ion-card-header>
+    <ng-container *ngIf="productos; else elseTemplate">
 
-            </ion-card>
-        </ion-slide>
+        <ion-slides [options]="opciones" pager="true">
+            <ion-slide *ngFor="let pro of productos " >
+    
+    
+                <ion-card class="card" (click)="redirigir2(pro.uid,pro.uidCategoria)">
+                    <div>
+                        <img class="tamano" [src]="pro.img" />
+                    </div>
+                    <ion-card-header>
+                        <ion-card-title>{{pro.nombre}}</ion-card-title>
+                    </ion-card-header>
+
+                    <ion-label color="dark">
+                        <h3 >{{pro.costo}} $</h3>
+        
+                    </ion-label>
+                    
+                </ion-card>
+    
+    
+            </ion-slide>
+    
+        </ion-slides>
+
+         
+       </ng-container>
+       <ng-template #elseTemplate>
+         <h1>Cargando...</h1>
+         
+       </ng-template>
 
 
-        <ion-slide>
-            <ion-card>
-                <img src="/assets/imagenes/home.png" />
-                <ion-card-header>
-                    <ion-card-title>Cerveza</ion-card-title>
-                </ion-card-header>
 
-            </ion-card>
-        </ion-slide>
-
-        <ion-slide>
-            <ion-card>
-                <img src="/assets/imagenes/home.png" />
-                <ion-card-header>
-                    <ion-card-title>Lechuga</ion-card-title>
-                </ion-card-header>
-
-            </ion-card>
-        </ion-slide>
-
-
-
-
-    </ion-slides>
+    
 
 </ion-content>

@@ -21,6 +21,7 @@ producto : Product = new Product();
 
   constructor(public router: Router, private rout:ActivatedRoute, private emprService: EmpresaService, private carrito: CarritoService, public toastController: ToastController) { 
     this.recuperarParametro();
+    
   }
 
   ngOnInit() {
@@ -34,10 +35,30 @@ producto : Product = new Product();
         this.uidCategoria=this.router.getCurrentNavigation().extras.queryParams.idC;
         console.log("Esta el producto-------",this.uidProducto);
         console.log("Esta el Categoria-------",this.uidCategoria);
+        
       }
     })
 
+    // if(this.uidProducto==undefined && this.uidCategoria==undefined){
+    //   console.log("Llego al pd")
+    //   this.uidProducto=this.router.getCurrentNavigation().extras.queryParams.uidPro;
+    //   console.log("uid",this.uidProducto)
+    
+
     this.recuperarProducto()
+
+  }
+
+
+  async recuperarParametro2(){
+    await this.rout.queryParams.subscribe(result=>{
+      if(this.router.getCurrentNavigation().extras.queryParams){
+        this.uidProducto=this.router.getCurrentNavigation().extras.queryParams.uidPro;
+        console.log("Esta el producto-------",this.uidProducto);
+      }
+    })
+
+ 
 
   }
 

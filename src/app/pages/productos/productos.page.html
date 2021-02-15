@@ -1,15 +1,26 @@
 <ion-header>
   <ion-toolbar>
+
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/productos"></ion-back-button>
   </ion-buttons>
     <ion-title>productos</ion-title>
+
+      <ion-toolbar color="tema">
+          <ion-buttons slot="start">
+              <ion-back-button defaultHref="./categoria-emp"></ion-back-button>
+          </ion-buttons>
+          <ion-title style="padding-left: 0" class=" ion-text-center ">Productos</ion-title>
+      </ion-toolbar>
+
   </ion-toolbar>
+
+
 </ion-header>
 
-<ion-content>
 
-  <h2>Productos</h2>
+<ion-content color="content">
+
   <ion-list *ngFor="let prod of productos">
       <ion-item button (click)="redirigir(prod.uid, prod.uidCategoria)">
           <ion-thumbnail style=" height: 140px; width: 130px; " slot="start" *ngIf="prod.img">
