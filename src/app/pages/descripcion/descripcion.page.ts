@@ -4,6 +4,7 @@ import { EmpresaService } from '../../services/empresa.service';
 import { Product } from '../../model/producto';
 import { CarritoService } from '../../services/carrito.service';
 import { CarritoPage } from '../carrito/carrito.page';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-descripcion',
@@ -16,7 +17,9 @@ producto : Product = new Product();
  
   uidProducto : string;
   uidCategoria : string;
-  constructor(public router: Router, private rout:ActivatedRoute, private emprService: EmpresaService, private carrito: CarritoService) { 
+  verificarPro: boolean;
+
+  constructor(public router: Router, private rout:ActivatedRoute, private emprService: EmpresaService, private carrito: CarritoService, public toastController: ToastController) { 
     this.recuperarParametro();
   }
 
@@ -48,13 +51,32 @@ producto : Product = new Product();
     
   }
 
+  async presentToast() {
+    const toast = await this.toastController.create({
+      message: 'Para seleccionar este producto debe vaciar su carrito de compras',
+      duration: 2000
+    });
+    toast.present();
+  }
 
-  agregarCarrito(){
-    console.log(this.producto, "Arrechooooooooooooooooo")
-    this.carrito.guardarProductoCarrito(this.producto);
-    this.router.navigate(["/carrito"]);
+
+  async agregarCarrito(){
+
+    await this.carrito.verificarCruce(this.producto).then(pro =>{
+      this.verificarPro = pro;
+      if(this.verificarPro == false){
+        this.presentToast();
+      }else if(this.verificarPro == true){
+        this.router.navigate(["/productos"]);
+      }
+   
+    })
+    
     
   }
+
+
+
 
 
 

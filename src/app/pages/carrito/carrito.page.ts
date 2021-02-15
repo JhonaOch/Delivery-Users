@@ -77,9 +77,18 @@ export class CarritoPage implements OnInit {
 
   realizarPedido(){
     this.pedido.precioTotal=this.total;
+    for(let uidEmp of this.pedido.productos){
+        this.pedido.uidEmpresa=uidEmp.producto.uidEmpresa;
+      continue;
+    }
     this.car.crearPedidoBase(this.pedido);
     this.router.navigate(["/home"]);
 
+  }
+
+ async vaciarCarrito(){
+    await this.car.vaciarCarrito();
+    this.router.navigate(["/home"]);
   }
 
 

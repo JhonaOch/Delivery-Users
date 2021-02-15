@@ -4,6 +4,7 @@ export class Pedido {
     uidUsario: string;
     precioTotal?: number;
     estado:string= "En Solicitud";
+    uidEmpresa?:string;
     productos?: ProductoPedido[];
 
 }
