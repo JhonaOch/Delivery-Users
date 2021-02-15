@@ -1,11 +1,25 @@
 <ion-header>
     <ion-toolbar color="tema">
-        <ion-title class=" ion-text-center textoTitulo ">Login</ion-title>
+        <ion-title class=" ion-text-center  ">Login</ion-title>
     </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
-    <img class="icon " src="assets/icon/logo.png ">
+<ion-content padding color="tema1">
+
+    <img src="../../assets/imagenes/logo22.png"  class="fondo" />
+ 
+      
+
+    <img src="../../assets/imagenes/l1.png"  class="imagenes"/>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
     <ion-item>
         <ion-label position="floating ">Correo</ion-label>
         <ion-input type="text" [(ngModel)]="correo" name="usuario "></ion-input>
@@ -17,21 +31,25 @@
 
     <br>
     <br>
-    <ion-button color="tema" (click)=" onSubmitLogin()" expand="block ">Iniciar Sesion</ion-button>
-    <br>
+    
+    <ion-button color="tema" (click)=" onSubmitLogin()" expand="block " >
+        
+        <ion-icon name="person-circle-outline" style="padding-right: 15px; "></ion-icon> Iniciar Sesion</ion-button>
+    
 
     <div class="referen">
         <span class=" divider line one-line "> or </span>
     </div>
-    <br>
+    
     <ion-row>
         <ion-col>
             <ion-button (click)="loginGoogle(correo,contra) " expand="block " color="danger">
-                <ion-icon style="padding-right: 15px; " name="logo-google "></ion-icon> Login with Google </ion-button>
+                <ion-icon style="padding-right: 15px; " name="logo-google"></ion-icon> Login with Google </ion-button>
+              
         </ion-col>
     </ion-row>
 
     <br>
-    <p class="referen" style="text-decoration: underline;" routerLink="/registro">Registrarse</p>
+    <p class="referen" style="text-decoration: underline;" routerLink="/registro"><b>Registrate</b></p>
 
 </ion-content>
