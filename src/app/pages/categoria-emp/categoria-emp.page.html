@@ -13,22 +13,17 @@
 
 <ion-content color="content">
 
-    <ion-item>
-        <ion-label position="stacked">Busqueda</ion-label>
-        <ion-input [(ngModel)]="buscarNombre"></ion-input>
-  
-      </ion-item>
-  
-      <ion-button (click)="buscar()">Buscar</ion-button>
+
+      
 
 
     <div *ngIf="photo" class="content" [ngStyle]="{'background-image': 'url('+photo+')'}">
-        
         <div class="contentImg">
-            <ion-searchbar ></ion-searchbar>
+            <ion-searchbar [(ngModel)]="busqueda" ></ion-searchbar>
+            <ion-button (click)="buscar()">Todo o Buscar</ion-button>
         </div>
-
     </div>
+    
     <h5>Categorias</h5>
     <ion-list *ngFor="let catProd of categorias">
         <ion-item button (click)="redirigir(catProd.uid)">

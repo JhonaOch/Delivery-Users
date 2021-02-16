@@ -18,6 +18,7 @@ export class CategoriaEmpPage implements OnInit {
   categorias:any[];
   photo:string;
   buscarNombre:string;
+  busqueda: string;
   
 
   constructor(public empresaService:EmpresaService, public router: Router, private rout:ActivatedRoute,public categoriaS:CategoriaService) {
@@ -73,11 +74,18 @@ export class CategoriaEmpPage implements OnInit {
 
 
   buscar(){
-    console.log(this.buscarNombre)
-        
-      this.categoriaS.buscarCategoriaPorNombre(this.buscarNombre)
-      console.log("El nombre es",this.buscarNombre) 
+    console.log(this.busqueda)
 
+      if(this.busqueda == null || this.busqueda == ""){
+        this.recuperarCategorias();
+      }else{
+        
+        this.categoriaS.buscarCategoriaPorNombre(this.busqueda).subscribe(resp =>{
+          this.categorias=resp;
+          console.log("jojojojo",this.categorias);
+        });
+       
+      }
   }
 
 
