@@ -1,18 +1,23 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>carrito</ion-title>
+  <ion-toolbar color="tema">
+    <ion-title>Carrito</ion-title>
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/home"></ion-back-button>
   </ion-buttons>
 
-  <ion-button (click)="vaciarCarrito()" slot="end">
-    <ion-icon name="trash-outline"></ion-icon>
-  </ion-button> 
+  <div slot="end" class="icono ion-activatable repple-parent">
+    <ion-ripple-effect>
+        
+    </ion-ripple-effect>
+    <ion-icon (click)="vaciarCarrito()" name="trash-outline" ></ion-icon>
+    
+    
+  </div>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <h2>Carrito</h2>
+
         
   
     <ion-list *ngFor="let carrito of pedido.productos ">
@@ -22,19 +27,32 @@
                 <img [src]="carrito.producto.img">
             </ion-thumbnail>
             <ion-label>
-                <h1>{{carrito.producto.nombre}}</h1>
-                <h3>{{carrito.producto.descripcion}}</h3>
-                <h1>Costo : </h1>
-                <h3>{{carrito.producto.costo}}</h3>
-                <h1>Cantidad : </h1>
-                <h1>{{carrito.cantidad}}</h1>
+              <ion-label><b>Nombre: </b></ion-label>
+                <h5>{{carrito.producto.nombre}}</h5>
+                <ion-label><b>Descripcion: </b></ion-label>
+                <h5>{{carrito.producto.descripcion}}</h5>
+                <h5><b>Costo: </b> </h5>
+                <h5>{{carrito.producto.costo}}</h5>
+                <h5><b>Cantidad: </b></h5>
+                <h5>{{carrito.cantidad}}</h5>
             </ion-label>
-            <ion-button (click)="resCarrito(carrito.producto)"  slot="end">
-              <ion-icon name="remove-circle-outline"></ion-icon>
-          </ion-button>
-            <ion-button (click)="sumCarrito(carrito.producto)"  slot="end">
-              <ion-icon  name="add-circle-outline"></ion-icon>
-          </ion-button>
+
+          
+
+            </ion-item>
+
+            <ion-item >
+              <div class="dimension"> 
+                <ion-icon (click)="resCarrito(carrito.producto)"  name="remove-circle-outline"></ion-icon>
+        
+           
+                <ion-icon  (click)="sumCarrito(carrito.producto)" name="add-circle-outline"></ion-icon>
+
+
+              </div>
+  
+             
+    
         
         
         </ion-item>
@@ -49,20 +67,20 @@
   <ion-grid>
     <ion-row class="ion-justify-content-center">
       <ion-col class="normal text-center" size="4">
-        Cantidad: {{cantidad}}
+        <b>Cantidad:</b> {{cantidad}}
 
       </ion-col>
       <ion-col class="normal text-center" size="3">
-        Total: {{total}}$
+        <b>Total:</b> {{total}}$
         
       </ion-col >
     </ion-row>
     <ion-row>
         <ion-col>
-          <ion-button expand="full" class="normal" (click)="mapa()" >
+          <ion-button expand="full" class="normal" (click)="mapa()" color="dark">
             Escoger Direccion
            </ion-button>
-           <ion-button expand="full" class="normal"  (click)="realizarPedido()">
+           <ion-button expand="full" class="normal"  (click)="realizarPedido()"   color="dark">
             Pedir
            </ion-button>
         </ion-col>

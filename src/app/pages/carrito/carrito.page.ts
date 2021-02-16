@@ -112,6 +112,7 @@ export class CarritoPage implements OnInit {
  async vaciarCarrito(){
     await this.car.vaciarCarrito();
     this.router.navigate(["/home"]);
+    console.log("ELIMINA TODOS LOS DATOS");
   }
 
 
