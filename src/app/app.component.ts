@@ -39,6 +39,11 @@ export class AppComponent implements OnInit {
       title: 'Configuración',
       url: '/modifusuario',
       icon: 'construct'
+    },
+    {
+      title: 'Pedidos',
+      url: '/resumenpedido',
+      icon: 'create'
     }
   ];
  

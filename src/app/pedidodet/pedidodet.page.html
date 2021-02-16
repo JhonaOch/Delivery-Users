@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/Pedidos"></ion-back-button>
+  </ion-buttons>
+    <ion-title>Detalle</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ng-container *ngIf="pedidos; else elseTemplate">
+    <div *ngFor="let ped of pedidos">
+        <ion-slides *ngFor="let productos of ped.productos">
+            <ion-slide>
+                <ion-card>
+                    <ion-img [src]="productos.producto.img">
+                    </ion-img>
+                    <ion-card-header>
+                        <ion-card-title>{{productos.producto.nombre}}</ion-card-title>
+                    </ion-card-header>
+                    <ion-card-content>
+                        <ion-item>
+                            <ion-label position="start">Cantidad: </ion-label>
+                            <ion-label>{{productos.cantidad}}</ion-label>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label position="start">Precio: </ion-label>
+                            <ion-label>{{productos.producto.costo}}</ion-label>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label position="start">Estado: </ion-label>
+                            <ion-label>{{ped.estado}}</ion-label>
+                        </ion-item>
+                    </ion-card-content>
+                </ion-card>
+
+            </ion-slide>
+        </ion-slides>
+        <ion-item style="padding-left: 25px;">
+            <ion-label class="total" position="start">Precio Total: </ion-label>
+            <ion-label class="total">{{ped.precioTotal}}</ion-label>
+        </ion-item>
+       
+    </div>
+</ng-container>
+<ng-template #elseTemplate>
+    <h1>Cargando...</h1>
+
+</ng-template>
+
+</ion-content>

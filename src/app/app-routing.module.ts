@@ -63,7 +63,15 @@ const routes: Routes = [
     path: 'modifusuario',
     loadChildren: () => import('./modifusuario/modifusuario.module').then( m => m.ModifusuarioPageModule)
 
+  },  {
+    path: 'resumenpedido',
+    loadChildren: () => import('./resumenpedido/resumenpedido.module').then( m => m.ResumenpedidoPageModule)
+  },
+  {
+    path: 'pedidodet',
+    loadChildren: () => import('./pedidodet/pedidodet.module').then( m => m.PedidodetPageModule)
   }
+
 
 
 

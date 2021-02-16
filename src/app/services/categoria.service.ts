@@ -17,6 +17,19 @@ export class CategoriaService {
   }  
 
 
+  getPedidos(empresaId : string): Observable<any>{
+    console.log(  "Entra pedido")
+    return this.afs.collection('pedidos',ref => ref.where('uidUsario', '==',empresaId)).valueChanges();
+  }
+
+  getPedidosbyId(uidPed : string): Observable<any>{
+    console.log(  "Entra pedido Para listar",uidPed)
+    return this.afs.collection('pedidos',ref => ref.where('uid', '==',uidPed)).valueChanges();
+  }
+
+
+
+
 }
 
 
