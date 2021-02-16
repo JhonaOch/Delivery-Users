@@ -113,9 +113,23 @@ async verificarCruce(prod:Product){
         estado : " Espera",
         productos : []
       }
+    }else{
+      if(this.pedido.uid != null){
+        this.pedido = {
+          uid : this.afs.createId(),
+          uidUsario: uidU,
+          precioTotal : null,
+          estado : " Espera",
+          productos : []
+        }
+      }
     }
     this.storage.set('pedido', this.pedido);
   }
+
+
+
+
 
  async recuperarPedido(){
     return await this.storage.get('pedido');

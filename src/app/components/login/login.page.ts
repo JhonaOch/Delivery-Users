@@ -37,6 +37,7 @@ export class LoginPage implements OnInit {
   async crearP(){
     console.log("va a crear")
    await this.car.crearPedidoIni(this.usuario1);
+   await this.auth.guardarStorage(this.usuario1);
   }
 
   async loginGoogle(){

@@ -5,6 +5,8 @@ import { Router, UrlSerializer} from "@angular/router"
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import firebase from 'firebase/app';
 import 'firebase/auth';
+import { Observable } from 'rxjs';
+import { Storage } from '@ionic/storage'
 
 
 
@@ -13,7 +15,7 @@ import 'firebase/auth';
 })
 export class AuthService {
 
-  constructor(private AFauth : AngularFireAuth, private router:Router, public afs: AngularFirestore) { }
+  constructor(private AFauth : AngularFireAuth, private router:Router, public afs: AngularFirestore, private storage: Storage) { }
 
   logout(){
     
@@ -88,4 +90,30 @@ export class AuthService {
 
     return userRef.set(data,{merge:true})
   }
+
+  
+
+  guardarStorage( uidUusario : string){
+   this.storage.set("uidUsuario",uidUusario);
+
+  }
+
+  getUsuarioStorage(){
+    return this.storage.get('uidUsuario');
+  }
+
+  eliminarStorage(){
+    this.storage.remove("uidUsuario");
+  }
+
+  
+ 
+
+
+
+
+
+
+
+
 }

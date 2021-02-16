@@ -3,6 +3,7 @@ import { CarritoService } from '../../services/carrito.service';
 import { Pedido } from '../../model/pedido';
 import { Product } from '../../model/producto';
 import { Router, NavigationExtras } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-carrito',
@@ -13,12 +14,23 @@ export class CarritoPage implements OnInit {
   pedido : Pedido = new Pedido();
   total: number;
   cantidad: number;
+  codigoUsuario: string;
 
-  constructor(public car: CarritoService, public router: Router) { }
+  constructor(public car: CarritoService, public router: Router, public aunt: AuthService) { }
 
   ngOnInit() {
     this.recuperarCarrito();
+    this.recuperarUsu();
     
+  }
+
+
+  async recuperarUsu(){
+    await this.aunt.getUsuarioStorage().then((respuesta : string) => {
+      this.codigoUsuario = respuesta;
+      console.log("llego al home --------------------------------------"+ this.codigoUsuario);
+    }).catch(error => {console.log(error)})
+
   }
 
  
@@ -75,16 +87,27 @@ export class CarritoPage implements OnInit {
   }
 
 
-  realizarPedido(){
+ async realizarPedido(){
     this.pedido.precioTotal=this.total;
     for(let uidEmp of this.pedido.productos){
         this.pedido.uidEmpresa=uidEmp.producto.uidEmpresa;
       continue;
     }
-    this.car.crearPedidoBase(this.pedido);
+    await this.car.crearPedidoBase(this.pedido);
+   
+    this.crearPedidoInicial();
+
+  }
+
+
+  async crearPedidoInicial(){
+    
+    await this.car.crearPedidoIni(this.codigoUsuario);
+    console.log("creao un nuevo carro",this.codigoUsuario )
     this.router.navigate(["/home"]);
 
   }
+
 
  async vaciarCarrito(){
     await this.car.vaciarCarrito();
