@@ -3,6 +3,8 @@ import { AuthService } from '../../services/auth.service';
 import {Router} from '@angular/router'
 import { User } from '../../model/user';
 import { CarritoService } from '../../services/carrito.service';
+import { ToastController } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-login',
@@ -10,6 +12,7 @@ import { CarritoService } from '../../services/carrito.service';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
+ toastController: ToastController
 
   correo:string;
   contra:string;
@@ -23,6 +26,14 @@ export class LoginPage implements OnInit {
   ngOnInit() {
   }
 
+  async presentToast( message: string ) {
+    const toast = await this.toastController.create({
+      message,
+      duration: 1500
+    });
+    toast.present();
+  }
+
   onSubmitLogin(){
     
     this.auth.login(this.correo,this.contra).then((res:any) => {
@@ -31,7 +42,18 @@ export class LoginPage implements OnInit {
       this.crearP();
       this.router.navigate(['/home'])
       
-    }).catch(err => alert("No existe el usuario"));
+    }).catch(
+
+      err=>
+      {
+    
+        this.presentToast("Usuario Incorrecto")
+        
+        
+      }
+   
+    
+    );
 
   }
   
@@ -59,7 +81,9 @@ export class LoginPage implements OnInit {
         this.router.navigate(['/home'])
       }
 
-    }catch(error){console.log("error login google",error)}
+    }catch(error)
+    {console.log("error login google",error)}
+    
   }
 
   togglePassword():void{
@@ -70,5 +94,10 @@ export class LoginPage implements OnInit {
       this.passwordToggleIcon='eye';
     }
   }
+
+  
+
+  
+  
 
 }
