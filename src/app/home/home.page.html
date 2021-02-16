@@ -4,23 +4,32 @@
             <ion-menu-button></ion-menu-button>
         </ion-buttons>
 
-        <div class="ion-text-center">
-           
+        <ion-title>Inicio</ion-title>
 
-        <ion-title>DeliFast</ion-title>
-        <ion-button (click)="carrito()" slot="end">
-            <ion-icon name="cart-outline"></ion-icon>
-        </ion-button>
-
-        </div>
         
 
         <div slot="end" class="icono ion-activatable repple-parent">
             <ion-ripple-effect>
                 
             </ion-ripple-effect>
-            <ion-icon (click)="salir()" name="log-out"></ion-icon>
+            <ion-icon   (click)="carrito()" name="cart-outline"></ion-icon>
+            
+          
+            
           </div>
+
+          <div slot="end" class="icono ion-activatable repple-parent">
+            <ion-ripple-effect>
+                
+            </ion-ripple-effect>
+            <ion-icon (click)="salir()" name="log-out"></ion-icon>
+            
+          
+            
+          </div>
+
+
+         
 
     </ion-toolbar>
 </ion-header>
