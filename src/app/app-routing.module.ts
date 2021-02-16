@@ -22,53 +22,54 @@ const routes: Routes = [
     loadChildren: () => import('./components/login/login.module').then( m => m.LoginPageModule)
   },
   {
-    path: 'registro',
+    path: 'registro',canActivate:[NoLoginGuard],
     loadChildren: () => import('./components/registro/registro.module').then( m => m.RegistroPageModule)
   },
   {
-    path: 'inicio-empresa',
+    path: 'inicio-empresa',canActivate:[AuthGuard],
     loadChildren: () => import('./pages/inicio-empresa/inicio-empresa.module').then( m => m.InicioEmpresaPageModule)
   },
   {
-    path: 'categoria-emp',
+    path: 'categoria-emp',canActivate:[AuthGuard],
     loadChildren: () => import('./pages/categoria-emp/categoria-emp.module').then( m => m.CategoriaEmpPageModule)
   },
   {
-    path: 'productos',
+    path: 'productos',canActivate:[AuthGuard],
     loadChildren: () => import('./pages/productos/productos.module').then( m => m.ProductosPageModule)
   },
   {
-    path: 'descripcion',
+    path: 'descripcion',canActivate:[AuthGuard],
     loadChildren: () => import('./pages/descripcion/descripcion.module').then( m => m.DescripcionPageModule)
   },
   {
-    path: 'mapa',
+    path: 'mapa',canActivate:[AuthGuard],
     loadChildren: () => import('./pages/mapa/mapa.module').then( m => m.MapaPageModule)
   },
   {
-    path: 'carrito',
+    path: 'carrito',canActivate:[AuthGuard],
     loadChildren: () => import('./pages/carrito/carrito.module').then( m => m.CarritoPageModule)
 
   },
   {
 
-    path: 'vision',
+    path: 'vision',canActivate:[AuthGuard],
     loadChildren: () => import('./pages/vision/vision.module').then( m => m.VisionPageModule)
   },
   {
-    path: 'contactos',
+    path: 'contactos',canActivate:[AuthGuard],
     loadChildren: () => import('./pages/contactos/contactos.module').then( m => m.ContactosPageModule)
   },
   {
-    path: 'modifusuario',
+    path: 'modifusuario',canActivate:[AuthGuard],
     loadChildren: () => import('./modifusuario/modifusuario.module').then( m => m.ModifusuarioPageModule)
 
-  },  {
-    path: 'resumenpedido',
+  },
+  {
+    path: 'resumenpedido',canActivate:[AuthGuard],
     loadChildren: () => import('./resumenpedido/resumenpedido.module').then( m => m.ResumenpedidoPageModule)
   },
   {
-    path: 'pedidodet',
+    path: 'pedidodet',canActivate:[AuthGuard],
     loadChildren: () => import('./pedidodet/pedidodet.module').then( m => m.PedidodetPageModule)
   }
 
