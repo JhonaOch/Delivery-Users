@@ -1,13 +1,13 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button defaultHref="/Pedidos"></ion-back-button>
-  </ion-buttons>
-    <ion-title>Detalle</ion-title>
-  </ion-toolbar>
-</ion-header>
+    <ion-toolbar color="tema">
+      <ion-title>Pedido</ion-title>
+      <ion-buttons slot="start">
+        <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
 
-<ion-content>
+<ion-content color="content">
 
   <ng-container *ngIf="pedidos; else elseTemplate">
     <div *ngFor="let ped of pedidos">
