@@ -26,12 +26,6 @@ export class AppComponent implements OnInit {
       icon: 'cart'
     },
     {
-      title: 'Usuario',
-      url: '/modifusuario',
-      icon: 'paper-plane'
-
-    },
-    {
       title: 'Misión y Visión',
       url: '/vision',
       icon: 'heart'
@@ -43,7 +37,7 @@ export class AppComponent implements OnInit {
     },
     {
       title: 'Configuración',
-      url: '/folder/Trash',
+      url: '/modifusuario',
       icon: 'construct'
     }
   ];
