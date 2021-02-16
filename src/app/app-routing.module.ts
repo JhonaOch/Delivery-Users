@@ -49,7 +49,15 @@ const routes: Routes = [
     path: 'carrito',
     loadChildren: () => import('./pages/carrito/carrito.module').then( m => m.CarritoPageModule)
 
+  },  {
+    path: 'vision',
+    loadChildren: () => import('./pages/vision/vision.module').then( m => m.VisionPageModule)
+  },
+  {
+    path: 'contactos',
+    loadChildren: () => import('./pages/contactos/contactos.module').then( m => m.ContactosPageModule)
   }
+
 
 
 ];

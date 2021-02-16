@@ -18,33 +18,27 @@ export class AppComponent implements OnInit {
       icon: 'home'
     },
     {
-      title: 'Outbox',
-      url: '/folder/Outbox',
-      icon: 'paper-plane'
+      title: 'Carrito',
+      url: '/carrito',
+      icon: 'cart'
     },
     {
-      title: 'Favorites',
-      url: '/folder/Favorites',
+      title: 'Misión y Visión',
+      url: '/vision',
       icon: 'heart'
     },
     {
-      title: 'Archived',
-      url: '/folder/Archived',
-      icon: 'archive'
+      title: 'Contacto',
+      url: '/contactos',
+      icon: 'create'
     },
     {
-      title: 'Trash',
+      title: 'Configuración',
       url: '/folder/Trash',
-      icon: 'trash'
-    },
-    {
-      title: 'Spam',
-      url: '/folder/Spam',
-      icon: 'warning'
+      icon: 'construct'
     }
   ];
-  public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
-
+ 
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
@@ -66,4 +60,7 @@ export class AppComponent implements OnInit {
       this.selectedIndex = this.appPages.findIndex(page => page.title.toLowerCase() === path.toLowerCase());
     }
   }
+
+
+
 }
