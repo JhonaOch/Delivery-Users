@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { AuthService } from './services/auth.service';
+import { User } from './model/user';
 
 @Component({
   selector: 'app-root',
@@ -18,8 +20,8 @@ export class AppComponent implements OnInit {
       icon: 'home'
     },
     {
-      title: 'Outbox',
-      url: '/folder/Outbox',
+      title: 'Usuario',
+      url: '/modifusuario',
       icon: 'paper-plane'
     },
     {
@@ -48,7 +50,8 @@ export class AppComponent implements OnInit {
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
-    private statusBar: StatusBar
+    private statusBar: StatusBar,
+    public aunt: AuthService
   ) {
     this.initializeApp();
   }
@@ -60,10 +63,37 @@ export class AppComponent implements OnInit {
     });
   }
 
+  codigoUsuario: string;
+  usuario: User = new User();
   ngOnInit() {
     const path = window.location.pathname.split('folder/')[1];
     if (path !== undefined) {
       this.selectedIndex = this.appPages.findIndex(page => page.title.toLowerCase() === path.toLowerCase());
     }
+
+    this.recuperarUsu();
   }
+
+
+  async recuperarUsu(){
+    await this.aunt.getUsuarioStorage().then((respuesta : string) => {
+      this.codigoUsuario = respuesta;
+      console.log("llego al modificar usuario--------------------------------------"+ this.codigoUsuario);
+    }).catch(error => {console.log(error)})
+
+    this.BuscraUsu();
+
+  }
+
+  async BuscraUsu(){
+  
+    await this.aunt.findUidUsuario(this.codigoUsuario).then((resp:any)=>{
+      const aux = resp;
+      this.usuario = aux;
+      console.log(this.usuario);
+
+    })
+    
+  }
+
 }

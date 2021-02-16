@@ -7,6 +7,7 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 import { Observable } from 'rxjs';
 import { Storage } from '@ionic/storage'
+import { first } from 'rxjs/operators';
 
 
 
@@ -104,6 +105,24 @@ export class AuthService {
 
   eliminarStorage(){
     this.storage.remove("uidUsuario");
+  }
+
+
+  async findUidUsuario(uidUser : string){
+    try{
+      let aux = await this.afs.collection("Users",ref => ref.where("uid","==",uidUser)).valueChanges()
+                .pipe(first()).toPromise().then(doc => {
+                  return doc;
+                }).catch(error => {
+                  throw error;
+              });
+        if(aux==null)
+          return {};
+        return aux[0];
+    }catch(error){
+    console.error("Error get contactos ById", error);
+    throw error;
+    } 
   }
 
   
