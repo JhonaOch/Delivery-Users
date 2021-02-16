@@ -15,6 +15,8 @@ export class LoginPage implements OnInit {
   contra:string;
   usuario: User=new User();
   usuario1: string;
+  showPassword=false;
+  passwordToggleIcon='eye';
 
   constructor(private auth: AuthService, public router: Router, public car: CarritoService) { }
 
@@ -58,6 +60,15 @@ export class LoginPage implements OnInit {
       }
 
     }catch(error){console.log("error login google",error)}
+  }
+
+  togglePassword():void{
+    this.showPassword=!this.showPassword;
+    if(this.passwordToggleIcon=='eye'){
+      this.passwordToggleIcon='eye-off';
+    }else{
+      this.passwordToggleIcon='eye';
+    }
   }
 
 }
