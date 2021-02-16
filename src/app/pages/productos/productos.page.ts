@@ -53,6 +53,10 @@ export class ProductosPage implements OnInit {
  
 
 
+  home(){
+    this.router.navigate(['/home']);
+    
 
+  }
 
 }
