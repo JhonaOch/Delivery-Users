@@ -48,4 +48,11 @@ export class InicioEmpresaPage implements OnInit {
     this.router.navigate(['/categoria-emp'],navigateExtras)
   }
 
+  home(){
+    this.router.navigate(['/home']);
+    
+
+  }
+
 }
+

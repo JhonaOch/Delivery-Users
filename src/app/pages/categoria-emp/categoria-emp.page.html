@@ -5,6 +5,15 @@
                 <ion-back-button defaultHref="./inicio-empresa"></ion-back-button>
             </ion-buttons>
             <ion-title style="padding-left: 0" class=" ion-text-center ">Categorias Empresa</ion-title>
+            <div slot="end" class="icono ion-activatable repple-parent">
+                <ion-ripple-effect>
+                    
+                </ion-ripple-effect>
+                <ion-icon (click)="home()" name="home" ></ion-icon>
+                
+              
+                
+              </div>
         </ion-toolbar>
     </ion-toolbar>
 
@@ -20,7 +29,7 @@
     <div *ngIf="photo" class="content" [ngStyle]="{'background-image': 'url('+photo+')'}">
         <div class="contentImg">
             <ion-searchbar [(ngModel)]="busqueda" ></ion-searchbar>
-            <ion-button (click)="buscar()">Todo o Buscar</ion-button>
+            <ion-button color="dark" (click)="buscar()">Buscar-Listar</ion-button>
         </div>
     </div>
     
